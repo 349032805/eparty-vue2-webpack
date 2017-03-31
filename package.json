@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "eparty",
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "build": "node build/build.js",
-    "test": "",
+    "start": "webpack-dev-server --inline --hot",
+    "build": "webpack  --config webpack.production.config.js",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
@@ -36,7 +35,6 @@
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
     "eventsource-polyfill": "^0.9.6",
-    "express": "^4.13.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "friendly-errors-webpack-plugin": "^1.1.2",
