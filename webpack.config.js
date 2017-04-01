@@ -6,18 +6,22 @@ var merge = require('webpack-merge')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrors = require('friendly-errors-webpack-plugin')
 
+
 module.exports = {
   entry: {
     app: './src/main.js'
   },
   output: {
-    path: config.build.assetsRoot,
-    publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
+  	//因为index.html在根目录.如果webpack指定根目录如src,
+  	//则 path:__dirname + '/src',
+    path:__dirname, 
+    // publicPath: '/',
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['', '.js', '.vue', '.json'],
+    extensions: ['', '.js', '.vue'],
     fallback: [path.join(__dirname, '../node_modules')],
+
     alias: {
       'src': path.resolve(__dirname, '../src'),
       'common': path.resolve(__dirname, '../src/common'),
@@ -55,29 +59,13 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel',
         include: [
-          path.join(projectRoot, 'src')
+          path.join('./', 'src')
         ],
         exclude: /node_modules/
       },
       {
-        test: /\.json$/,
-        loader: 'json'
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url',
-        query: {
-          limit: 10000,
-          name: utils.assetsPath('img/[name].[hash:7].[ext]')
-        }
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url',
-        query: {
-          limit: 10000,
-          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
-        }
+      	test:/\.(png|jpg|gif|woff|woff2|ttf|eot|svg|swf)$/,
+      	loader: "file-loader?name=images/[name].[ext]"
       }
     ]
   },
@@ -102,14 +90,9 @@ module.exports = merge(baseWebpackConfig, {
   // eval-source-map is faster for development
   devtool: '#eval-source-map',
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': config.dev.env
-    }),
-    // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
