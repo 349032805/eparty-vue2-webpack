@@ -1,11 +1,8 @@
 var path = require('path')
 var utils = require('./utils')
-var projectRoot = path.resolve(__dirname, '../')
 var webpack = require('webpack')
-var merge = require('webpack-merge')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrors = require('friendly-errors-webpack-plugin')
-
 
 module.exports = {
   entry: {
@@ -37,7 +34,7 @@ module.exports = {
     //     test: /\.vue$/,
     //     loader: 'eslint',
     //     include: [
-    //       path.join(projectRoot, 'src')
+    //       path.join('./', 'src')
     //     ],
     //     exclude: /node_modules/
     //   },
@@ -45,7 +42,7 @@ module.exports = {
     //     test: /\.js$/,
     //     loader: 'eslint',
     //     include: [
-    //       path.join(projectRoot, 'src')
+    //       path.join('./', 'src')
     //     ],
     //     exclude: /node_modules/
     //   }
@@ -66,6 +63,10 @@ module.exports = {
       {
       	test:/\.(png|jpg|gif|woff|woff2|ttf|eot|svg|swf)$/,
       	loader: "file-loader?name=images/[name].[ext]"
+      },
+      //样式
+      {
+      	utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
       }
     ]
   },
@@ -79,25 +80,38 @@ module.exports = {
         browsers: ['last 2 versions']
       })
     ]
-  }
-}
-
-
-module.exports = merge(baseWebpackConfig, {
-  module: {
-    loaders: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
   },
-  // eval-source-map is faster for development
-  devtool: '#eval-source-map',
-  plugins: [
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    // new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
-      inject: true
-    }),
-    new FriendlyErrors()
-  ]
-})
+
+  //这个配置在 npm scripts里也可以 
+  //webpack-dev-server --devtool eval --progress --colors --hot --open --content-base app --history-api-fallback
+	devServer: {
+	    historyApiFallback: true,
+	    hot: true,
+	    inline: true,
+	    progress: true,
+	    contentBase: './',
+	    host: '0.0.0.0',
+	    port: 8090,
+	    open:true, //自动打开页面,和OpenBrowserPlugin 插件功能一样
+	    proxy: {
+	    '/api/*': {
+	      target: 'http://localhost:8081',
+	      secure: false,
+	      changeOrigin: true
+	    }
+	  }
+	},
+
+	devtool: '#eval-source-map',
+	plugins: [
+	    // new webpack.optimize.OccurrenceOrderPlugin(),
+	    // new webpack.HotModuleReplacementPlugin(),
+	    new webpack.NoErrorsPlugin(),
+	    new HtmlWebpackPlugin({
+	      filename: 'index.html',
+	      template: 'index.html',
+	      inject: true
+	    }),
+	    new FriendlyErrors()
+	]
+}
