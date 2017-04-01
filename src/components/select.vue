@@ -19,7 +19,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import header from 'components/header/header.vue';
+  import header from 'components/header.vue';
 
   export default {
     data() {

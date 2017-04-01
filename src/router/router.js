@@ -1,9 +1,9 @@
 import index from '../views/index';
 
-import goods from '../components/goods/goods';
-import ratings from '../components/ratings/ratings';
-import seller from '../components/seller/seller';
-import select from '../components/select/select';
+import goods from '../components/goods';
+import ratings from '../components/ratings';
+import seller from '../components/seller';
+import select from '../components/select';
 
 import test from '../views/test';
 import list from '../views/list';

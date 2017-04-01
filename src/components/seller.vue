@@ -74,9 +74,9 @@
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll';
   import {saveToLocal, loadFromLocal} from 'common/js/store';
-  import star from 'components/star/star';
-  import split from 'components/split/split';
-  import select from 'components/select/select.vue';
+  import star from 'components/star';
+  import split from 'components/split';
+  import select from 'components/select.vue';
 
   export default {
     data() {

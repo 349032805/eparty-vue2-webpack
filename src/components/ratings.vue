@@ -61,10 +61,10 @@
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll';
   import {formatDate} from 'common/js/date';
-  import star from 'components/star/star';
-  import ratingselect from 'components/ratingselect/ratingselect';
-  import split from 'components/split/split';
-  import select from 'components/select/select.vue';
+  import star from 'components/star';
+  import ratingselect from 'components/ratingselect';
+  import split from 'components/split';
+  import select from 'components/select.vue';
 
   const ALL = 2;
   const ERR_OK = 0;

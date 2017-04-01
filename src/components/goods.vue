@@ -50,10 +50,10 @@
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll';
-  import shopcart from 'components/shopcart/shopcart';
-  import cartcontrol from 'components/cartcontrol/cartcontrol';
-  import food from 'components/food/food';
-  import select from 'components/select/select.vue';
+  import shopcart from 'components/shopcart';
+  import cartcontrol from 'components/cartcontrol';
+  import food from 'components/food';
+  import select from 'components/select.vue';
 
   const ERR_OK = 0;
 
