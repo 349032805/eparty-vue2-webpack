@@ -1,6 +1,7 @@
 var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
+var merge = require('webpack-merge')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrors = require('friendly-errors-webpack-plugin')
 
@@ -55,6 +56,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel',
+        // query:{ presets:['es2015']},
         include: [
           path.join('./', 'src')
         ],
@@ -65,16 +67,14 @@ module.exports = {
       	loader: "file-loader?name=images/[name].[ext]"
       },
       //样式
-      {
-      	utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
-      }
+      	utils.styleLoaders({ sourceMap: false })
     ]
   },
   // eslint: {
   //   formatter: require('eslint-friendly-formatter')
   // },
   vue: {
-    loaders: utils.cssLoaders({ sourceMap: useCssSourceMap }),
+    loaders: utils.cssLoaders({ sourceMap: false }),
     postcss: [
       require('autoprefixer')({
         browsers: ['last 2 versions']
