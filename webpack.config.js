@@ -67,20 +67,22 @@ module.exports = {
       	loader: "file-loader?name=images/[name].[ext]"
       },
       //样式
-      	utils.styleLoaders({ sourceMap: false })
+      // utils.styleLoaders({ sourceMap: false })
+      { test: /\.css$/, loader: 'style!css' },
+      { test: /\.styl$/, loader: 'style!css!stylus' }
     ]
   },
   // eslint: {
   //   formatter: require('eslint-friendly-formatter')
   // },
-  vue: {
-    loaders: utils.cssLoaders({ sourceMap: false }),
-    postcss: [
-      require('autoprefixer')({
-        browsers: ['last 2 versions']
-      })
-    ]
-  },
+  // vue: {
+  //   loaders: utils.cssLoaders({ sourceMap: false }),
+  //   postcss: [
+  //     require('autoprefixer')({
+  //       browsers: ['last 2 versions']
+  //     })
+  //   ]
+  // },
 
   //这个配置在 npm scripts里也可以 
   //webpack-dev-server --devtool eval --progress --colors --hot --open --content-base app --history-api-fallback
