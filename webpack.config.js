@@ -18,16 +18,16 @@ module.exports = {
   },
   resolve: {
     extensions: ['', '.js', '.vue'],
-    fallback: [path.join(__dirname, '../node_modules')],
+    fallback: [path.join(__dirname, 'node_modules')],
 
     alias: {
-      'src': path.resolve(__dirname, '../src'),
-      'common': path.resolve(__dirname, '../src/common'),
-      'components': path.resolve(__dirname, '../src/components')
+      'src': path.resolve(__dirname, 'src'),
+      'common': path.resolve(__dirname, 'src/common'),
+      'components': path.resolve(__dirname, 'src/components')
     }
   },
   resolveLoader: {
-    fallback: [path.join(__dirname, '../node_modules')]
+    fallback: [path.join(__dirname, 'node_modules')]
   },
   module: {
     // preLoaders: [
@@ -58,7 +58,7 @@ module.exports = {
         loader: 'babel',
         // query:{ presets:['es2015']},
         include: [
-          path.join('./', 'src')
+          path.join(__dirname, 'src')
         ],
         exclude: /node_modules/
       },
@@ -68,8 +68,10 @@ module.exports = {
       },
       //样式
       // utils.styleLoaders({ sourceMap: false })
-      { test: /\.css$/, loader: 'style!css' },
-      { test: /\.styl$/, loader: 'style!css!stylus' }
+      // { test: /\.css$/, loader: 'style!css' },
+      { test: /\.css$/, loader: 'vue-style-loader!css-loader' },
+      { test: /\.(styl|stylus)$/, loader: 'style!css!stylus' }
+      // { test: /\.(styl|stylus)$/, loader: 'vue-loader!vue-style-loader!css-loader!stylus-loader' }
     ]
   },
   // eslint: {

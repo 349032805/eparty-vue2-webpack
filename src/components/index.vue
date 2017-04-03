@@ -70,7 +70,7 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  @import "../../common/stylus/base.styl"
+  @import "../common/stylus/base.styl"
 
   .store-theme
     width: 100%
