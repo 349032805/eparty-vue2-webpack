@@ -63,8 +63,12 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-      	test:/\.(png|jpg|gif|woff|woff2|ttf|eot|svg|swf)$/,
+      	test: /\.(jpe?g|png|gif|svg)$/i,
       	loader: "file-loader?name=images/[name].[ext]"
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: "file-loader?name=fonts/[name].[ext]"
       },
       //样式
       { test: /\.css$/, loader: 'style!css' },
