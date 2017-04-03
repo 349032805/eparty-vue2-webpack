@@ -1,5 +1,4 @@
 var path = require('path')
-var utils = require('./utils')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrors = require('friendly-errors-webpack-plugin')
