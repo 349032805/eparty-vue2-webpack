@@ -70,8 +70,8 @@ module.exports = {
       // utils.styleLoaders({ sourceMap: false })
       // { test: /\.css$/, loader: 'style!css' },
       { test: /\.css$/, loader: 'vue-style-loader!css-loader' },
-      { test: /\.(styl|stylus)$/, loader: 'style!css!stylus' }
-      // { test: /\.(styl|stylus)$/, loader: 'vue-loader!vue-style-loader!css-loader!stylus-loader' }
+      // { test: /\.(styl|stylus)$/, loader: 'style!css!stylus' }
+      { test: /\.(styl|stylus)$/, loader: 'vue-loader!vue-style-loader!css-loader!stylus-loader' }
     ]
   },
   // eslint: {
