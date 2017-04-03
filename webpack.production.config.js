@@ -76,7 +76,11 @@ module.exports = {
         loader: ExtractTextPlugin.extract({ fallback: 'vue-loader', use: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'}),
       },
       {
-        test: /\.(styl|stylus)$/,
+        test: /\.styl$/,
+        loader: ExtractTextPlugin.extract({ fallback: 'vue-loader', use: 'vue-style-loader!css-loader!stylus-loader'}),
+      },
+      {
+        test: /\.stylus$/,
         loader: ExtractTextPlugin.extract({ fallback: 'vue-loader', use: 'vue-style-loader!css-loader!stylus-loader'}),
       },
       {

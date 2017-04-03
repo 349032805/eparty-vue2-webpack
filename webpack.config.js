@@ -73,7 +73,14 @@ module.exports = {
       //样式
       { test: /\.css$/, loader: 'style!css' },
       // { test: /\.css$/, loader: 'vue-style-loader!css-loader' },
-      { test: /\.(styl|stylus)$/, loader: 'vue-loader!vue-style-loader!css-loader!stylus-loader' },
+      { 
+        test: /\.stylus$/,
+        loader: 'vue-style-loader!css-loader!stylus-loader' 
+      },
+      { 
+        test: /\.styl$/,
+        loader: 'vue-style-loader!css-loader!stylus-loader' 
+      },
       {
         test: /\.(scss|sass)$/,
         loader: 'vue-loader!vue-style-loader!css-loader!sass-loader?indentedSyntax',
