@@ -1,7 +1,6 @@
 var path = require('path')
 var utils = require('./utils')
 var webpack = require('webpack')
-var merge = require('webpack-merge')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrors = require('friendly-errors-webpack-plugin')
 
@@ -23,7 +22,9 @@ module.exports = {
     alias: {
       'src': path.resolve(__dirname, 'src'),
       'common': path.resolve(__dirname, 'src/common'),
-      'components': path.resolve(__dirname, 'src/components')
+      'components': path.resolve(__dirname, 'src/components'),
+      'views': path.resolve(__dirname, 'src/views'),
+      'tip': path.resolve(__dirname, 'src/tip')
     }
   },
   resolveLoader: {
@@ -67,24 +68,25 @@ module.exports = {
       	loader: "file-loader?name=images/[name].[ext]"
       },
       //样式
-      // utils.styleLoaders({ sourceMap: false })
-      // { test: /\.css$/, loader: 'style!css' },
-      { test: /\.css$/, loader: 'vue-style-loader!css-loader' },
-      // { test: /\.(styl|stylus)$/, loader: 'style!css!stylus' }
-      { test: /\.(styl|stylus)$/, loader: 'vue-loader!vue-style-loader!css-loader!stylus-loader' }
+      { test: /\.css$/, loader: 'style!css' },
+      // { test: /\.css$/, loader: 'vue-style-loader!css-loader' },
+      { test: /\.(styl|stylus)$/, loader: 'vue-loader!vue-style-loader!css-loader!stylus-loader' },
+      {
+        test: /\.(scss|sass)$/,
+        loader: 'vue-loader!vue-style-loader!css-loader!sass-loader?indentedSyntax',
+      },
     ]
   },
   // eslint: {
   //   formatter: require('eslint-friendly-formatter')
   // },
-  // vue: {
-  //   loaders: utils.cssLoaders({ sourceMap: false }),
-  //   postcss: [
-  //     require('autoprefixer')({
-  //       browsers: ['last 2 versions']
-  //     })
-  //   ]
-  // },
+  vue: {
+    postcss: [
+      require('autoprefixer')({
+        browsers: ['last 2 versions']
+      })
+    ]
+  },
 
   //这个配置在 npm scripts里也可以 
   //webpack-dev-server --devtool eval --progress --colors --hot --open --content-base app --history-api-fallback

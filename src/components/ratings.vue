@@ -65,6 +65,7 @@
   import ratingselect from 'components/ratingselect';
   import split from 'components/split';
   import select from 'components/select.vue';
+  import data from '../data.js';
 
   const ALL = 2;
   const ERR_OK = 0;
@@ -81,17 +82,25 @@
       };
     },
     created() {
-      this.$http.get('/api/ratings').then((response) => {
-        response = response.body;
-        if (response.errno === ERR_OK) {
-          this.ratings = response.data;
-          this.$nextTick(() => {
-            this.scroll = new BScroll(this.$refs.ratings, {
-              click: true
-            });
-          });
-        }
+      // this.$http.get('/api/ratings').then((response) => {
+      //   response = response.body;
+      //   if (response.errno === ERR_OK) {
+      //     this.ratings = response.data;
+      //     this.$nextTick(() => {
+      //       this.scroll = new BScroll(this.$refs.ratings, {
+      //         click: true
+      //       });
+      //     });
+      //   }
+      // });
+
+      this.ratings = data.TEST_DATA.ratings;
+      this.$nextTick(() => {
+        this.scroll = new BScroll(this.$refs.ratings, {
+          click: true
+        });
       });
+
     },
     methods: {
       needShow(type, text) {

@@ -13,6 +13,7 @@
 
 <script>
   import {urlParse} from 'common/js/util';
+  import data from './data.js';
 
   const ERR_OK = 0;
 
@@ -23,19 +24,20 @@
         seller: {
           id: (() => {
             let queryParam = urlParse();
-            return queryParam.id;
+            return queryParam.id ? queryParam.id : 1;
           })()
         }
       };
     },
     created() {
-      this.$http.get('/api/seller?id=' + this.seller.id).then((response) => {
-        response = response.body;
-        if (response.errno === ERR_OK) {
-          this.seller = Object.assign({}, this.seller, response.data);
-          window.localStorage.setItem('seller', JSON.stringify(this.seller));
-        }
-      });
+      // this.$http.get('/api/seller?id=' + this.seller.id).then((response) => {
+      //   response = response.body;
+      //   if (response.errno === ERR_OK) {
+      //     this.seller = Object.assign({}, this.seller, response.data);
+      //     window.localStorage.setItem('seller', JSON.stringify(this.seller));
+      //   }
+      // });
+      window.localStorage.setItem('seller', JSON.stringify(data.TEST_DATA.seller));
     },
     mounted: function() {
       setTimeout(() => {
