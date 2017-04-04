@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -66,8 +67,8 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-      	test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-      	loader: "url-loader?limit=10000&name=/images/[name]-[hash:8].[ext]"
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: "url-loader?limit=10000&name=/images/[name]-[hash:8].[ext]"
       },
       //样式
       {
@@ -80,7 +81,7 @@ module.exports = {
       },
       {
         test: /\.styl$/,
-        loader: ExtractTextPlugin.extract({ fallback: 'vue-loader', use: 'vue-style-loader!css-loader!stylus-loader'}),
+        loader: ExtractTextPlugin.extract('css!stylus'),
       },
       {
         test: /\.stylus$/,
@@ -102,13 +103,13 @@ module.exports = {
       })
     ]
   },
-	plugins: [
-		new CleanWebpackPlugin('build', {
-	      verbose: true,
-	      dry: false
+  plugins: [
+    new CleanWebpackPlugin('build', {
+        verbose: true,
+        dry: false
     }),
-		new ExtractTextPlugin("styles/[name]-[contenthash:8].css"),
-		new webpack.optimize.DedupePlugin(),
+    new ExtractTextPlugin("styles/[name]-[contenthash:8].css"),
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -152,7 +153,10 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       chunks: ['vendor']
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: './static/css/reset.css', to: 'static/css/reset.css' }
+    ])
 
-	]
+  ]
 }
