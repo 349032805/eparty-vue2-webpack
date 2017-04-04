@@ -5,16 +5,16 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-  // entry: {
-  //   vendor: ["vue", "vue-resource","vue-router","babel-runtime","better-scroll","vuex"],
-  //   app: "./src/main.js"
-  // },
+  entry: {
+    // vendor: ["vue", "vue-resource","vue-router","babel-runtime","better-scroll","vuex"],
+    app: "./src/main.js"
+  },
   output: {
     path: __dirname + '/build',
     // path: path.join(__dirname, 'build'),
     // publicPath: '', //资源路径前缀
     filename: "scripts/[name]-[chunkhash:8].js",
-    chunkFilename: "scripts/[id]-[chunkhash:8].js"
+    // chunkFilename: "scripts/[id]-[chunkhash:8].js"
   },
 
   resolve: {
